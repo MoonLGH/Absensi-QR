@@ -1,0 +1,2 @@
+let api="https://absensi-api-qr.vercel.app/";function getNav(){document.getElementById("navbar-cta").classList.toggle("hidden")}let clicked=!1;async function absen(e,a,t){if(clicked)alert("Sabar mas");else{clicked=!0;let s=await fetch(api+"api/absen",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nama:e,kelas:a,id:t})}),i=await s.json();200===i.status?alert("Absen Berhasil "+i.message):alert("Absen Gagal "+i.message)}}
+//# sourceMappingURL=index.73d61c30.js.map
