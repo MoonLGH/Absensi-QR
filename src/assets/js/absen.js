@@ -46,19 +46,33 @@ async function loadData() {
         let table = document.getElementById("absen-table");
         let rows = "";
         let json = data.message
-        console.log(json)
+        let latestAbsen = []
         for (let i = 0; i < json.length; i++) {
+            let latest = json[i].absen[0]
+            for (let j = 0; j < json[i].absen.length; j++) {
+                if (latest < json[i].absen[j]) {
+                    latest = json[i].absen[j]
+                }
+            }
+            latestAbsen.push({
+                nama: json[i].nama,
+                kelas: json[i].kelas,
+                time: latest
+            })
+        }
+        // sort the array based on the latest time
+        latestAbsen.sort((a, b) => {
+            return b.time - a.time
+        })
+
+        console.log(latestAbsen)
+        for (let i = 0; i < latestAbsen.length; i++) {
             rows += `
             <tbody>
         <tr class="bg-white">
-            <td class="px-4 py-2">${json[i].nama}</td>
-            <td class="px-4 py-2">${json[i].kelas}${json[i].kelasStr.toUpperCase().replace("X","").replace("-","").replace(" ","")}</td>
-            <td class="px-4 py-2">${json[i].status}</td>
-            <td class="px-4 py-2">${json[i].alasan}</td>
-            <td class="px-4 py-2">${(new Date(json[i].time)).toLocaleString()}</td>
-            <td class="px-4 py-2">
-            <button onclick="deleteId(this)" class="btn btn-primary" data-id="${json[i]._id}">Delete</button>
-            </td>
+            <td class="px-4 py-2">${latestAbsen[i].nama}</td>
+            <td class="px-4 py-2">${latestAbsen[i].kelas}</td>
+            <td class="px-4 py-2">${(new Date(latestAbsen[i].time)).toLocaleString()}</td>
         </tr>
         </tbody>
         `;

@@ -3,8 +3,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build --public-url /Absensi-RPL/ src/*.html",
-    "buildToSch": "parcel build --public-url /Absensi-RPL/ src/*.html",
+    "build": "parcel build --public-url /Absensi-QR/ src/*.html",
+    "buildToSch": "parcel build --public-url /Absensi-QR/ src/*.html",
     "buildNotRoot": "parcel build --public-url 'templateTailwind' src/*.html"
   },
   "dependencies": {
