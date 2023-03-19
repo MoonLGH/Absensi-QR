@@ -1,4 +1,4 @@
-let api = "https://moonlgh-solid-memory-p9gvg96544qf7xj4-8080.preview.app.github.dev/"
+let api = "https://absensi-api-qr.vercel.app/"
 
 function getNav() {
     let navbar = document.getElementById("navbar-cta");
