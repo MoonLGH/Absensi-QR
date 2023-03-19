@@ -1,4 +1,4 @@
-let api = "https://absen.rplsaci.tech/"
+let api = "https://moonlgh-solid-memory-p9gvg96544qf7xj4-8080.preview.app.github.dev/"
 
 function getNav() {
     let navbar = document.getElementById("navbar-cta");
@@ -6,26 +6,21 @@ function getNav() {
 }
 
 let clicked = false
-async function absen() {
+async function absen(nama,kelas,id) {
     if (!clicked) {
         clicked = true
-
-        let namaAbsen = document.getElementById("namaAbsen").value
-        let kelas = document.getElementById("kelas").value
-        let status = document.getElementById("status").value
-        let alasan = document.getElementById("alasan").value || "-"
-        let kelasStr = document.getElementById("kelasStr").value
         let res = await fetch(api + "api/absen", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nama: namaAbsen, kelas: kelas, status: status, alasan: alasan, kelasStr: kelasStr }),
+            body: JSON.stringify({ nama,kelas,id }),
         });
         let data = await res.json()
-        if (data.status === 401) {
-            alert(data.message)
+        if (data.status === 200) {
+            alert("Absen Berhasil "+ data.message)
         } else {
-            alert(data.message)
+            alert("Absen Gagal "+ data.message)
         }
+
     } else {
         alert("Sabar mas")
     }

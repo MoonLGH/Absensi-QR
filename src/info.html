@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/main.css">
-    <script type="text/javascript" src="https://unpkg.com/@zxing/browser@latest"></script>
-    <script src="./assets/js/index.js" defer></script>
-    <script src="./assets/js/qrImplement.js" defer></script>
+    <script src="./assets/js/QRCode.js" defer></script>
+    <script src="./assets/js/infoAbsen.js" defer></script>
     <title>Ekstrakulikuler RPL SMAN 1 CIKAMPEK</title>
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon">
 </head>
@@ -21,8 +20,9 @@
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">RPLCi</span>
             </a>
             <div class="flex md:order-2">
-                <a href="./login.html" type="button"
-                    class="text-white bg-slate-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login Manager</a>
+                <a id="reg" type="button"
+                    class="text-white bg-slate-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
+                    Now (On Discord)</a>
                 <button onclick="getNav()" data-collapse-toggle="navbar-cta" type="button"
                     class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-cta" aria-expanded="false">
@@ -56,9 +56,17 @@
         </div>
     </nav>
     <div class="content flex items-center justify-center" style="height: 80vh;">
-        <div class="mx-auto text-center" id="qr-btn">
-            <button id="scan-button" class="btn btn-primary" onclick="chooseImageSource()">Scan</button>
-            <img id="qr-image">
+        <div class="mx-auto text-center flex" id="main">
+            <canvas id="qr-canvas" class="hidden"></canvas>
+            <img src="./assets/img/logo.png" id="placehold-QR" class="h-72">
+            <div class="text-container text-white">
+                <h1 class="text-4xl font-bold">Absensi QR</h1>
+                <p class="text-xl">Scan QR Code diatas untuk absensi</p>
+                <p class="text-xl">Jika QR Code tidak muncul, silahkan refresh halaman ini</p>
+                <h1 class="text-2xl font-bold" id="nama"></h1>
+                <h1 class="text-2xl font-bold" id="kelas"></h1>
+                <h1 class="text-2xl font-bold" id="id"></h1>
+            </div>
         </div>
     </div>
     <footer class="inset-x-0 bottom-0 p-2 bg-white sm:p-6 dark:bg-gray-900">

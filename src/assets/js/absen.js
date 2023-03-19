@@ -1,4 +1,4 @@
-let api = "https://absen.rplsaci.tech/"
+let api = "https://moonlgh-solid-memory-p9gvg96544qf7xj4-8080.preview.app.github.dev/"
 
 function getNav() {
     let navbar = document.getElementById("navbar-cta");
@@ -45,7 +45,7 @@ async function loadData() {
     if (data.status === 200) {
         let table = document.getElementById("absen-table");
         let rows = "";
-        let json = JSON.parse(data.message)
+        let json = data.message
         console.log(json)
         for (let i = 0; i < json.length; i++) {
             rows += `
